@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="116.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mcachedb.mcachedbconsole.CheckingConnection">
+   <children>
+      <Label layoutX="54.0" layoutY="52.0" text="Checking Connection on port 8886..." />
+   </children>
+</AnchorPane>
