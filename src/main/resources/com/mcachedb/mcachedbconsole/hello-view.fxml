@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="700.0" maxWidth="1000.0" minHeight="300.0" minWidth="594.0" prefHeight="369.0" prefWidth="596.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mcachedb.mcachedbconsole.HelloController">
+   <children>
+      <Button layoutX="237.0" layoutY="105.0" mnemonicParsing="false" onAction="#checkConnection" prefHeight="26.0" prefWidth="125.0" text="Button" />
+      <Label layoutX="62.0" layoutY="54.0" text="Enter MCacheDB Port number:" />
+      <TextField layoutX="253.0" layoutY="50.0" prefHeight="26.0" prefWidth="255.0" />
+      <Label layoutX="34.0" layoutY="264.0" prefHeight="18.0" prefWidth="406.0" text="Thank you for testing MCacheDB. Check out latest updates and binaries on  " />
+      <Hyperlink layoutX="34.0" layoutY="282.0" text="https://github.com/Shub-Gautam/MCacheDB/" />
+      <Label layoutX="34.0" layoutY="306.0" text="MIT License © Shubham Gautam  2023" />
+      <Label layoutX="34.0" layoutY="324.0" text="MCacheDB version0.0.6" />
+   </children>
+</AnchorPane>
