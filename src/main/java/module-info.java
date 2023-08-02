@@ -9,7 +9,12 @@ module com.mcachedb.mcachedbconsole {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires eu.hansolo.fx.countries;
+    requires eu.hansolo.fx.heatmap;
+    requires eu.hansolo.toolboxfx;
+    requires eu.hansolo.toolbox;
     requires java.net.http;
+    requires com.fasterxml.jackson.databind;
 
     opens com.mcachedb.mcachedbconsole to javafx.fxml;
     exports com.mcachedb.mcachedbconsole;
