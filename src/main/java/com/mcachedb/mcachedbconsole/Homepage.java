@@ -1,6 +1,7 @@
 package com.mcachedb.mcachedbconsole;
 
 import com.mcachedb.mcachedbconsole.Request.GetDBsList;
+import com.mcachedb.mcachedbconsole.System.Info;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,9 +17,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ListView;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class Homepage {
 
@@ -27,16 +29,36 @@ public class Homepage {
             .build();
 
 
-    int portString = 8080 ;
+    int portString = 0;
 
     @FXML
     private ListView<String> dbList;
 
+
+    @FXML
+    private Label dbnameDisplay;
+
+    @FXML
+    private Button ProceedBtn;
+
     @FXML
     private TextField newDbName;
 
+    void setPort(){
+        Scene scene = newDbName.getScene();
+        Window window = scene.getWindow();
+        Stage stage = (Stage) window;
+        Info info = (Info) stage.getUserData();
+        portString = info.getPort();
+    }
+
     @FXML
     void createDb(ActionEvent event) {
+
+        if(portString != 0){
+            setPort();
+        }
+
         HttpResponse<String> res ;
         HttpRequest r = HttpRequest.newBuilder()
                 .POST(HttpRequest.BodyPublishers.noBody())
@@ -64,6 +86,11 @@ public class Homepage {
 
     @FXML
     void refreshDbList(ActionEvent event) {
+
+        if(portString != 0){
+            setPort();
+        }
+
         HttpResponse<String> res ;
         HttpRequest r = HttpRequest.newBuilder()
                 .GET()
@@ -100,6 +127,17 @@ public class Homepage {
             alert.show();
         }
 
+    }
+
+    @FXML
+    void selectDbAndProceed(ActionEvent event) {
+
+        if(portString != 0){
+            setPort();
+        }
+
+        String selectedDB = dbList.getSelectionModel().getSelectedItem();
+        dbnameDisplay.setText(selectedDB);
     }
 
 }

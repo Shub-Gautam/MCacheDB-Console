@@ -1,5 +1,6 @@
 package com.mcachedb.mcachedbconsole;
 
+import com.mcachedb.mcachedbconsole.System.Info;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -54,6 +55,7 @@ public class HelloController {
 
                 Parent root = FXMLLoader.load(HelloApplication.class.getResource("homepage.fxml"));
                 Scene scene1 = new Scene(root);
+                stage.setUserData(new Info(Integer.parseInt(portString)));
                 stage.setScene(scene1);
                 stage.show();
 
