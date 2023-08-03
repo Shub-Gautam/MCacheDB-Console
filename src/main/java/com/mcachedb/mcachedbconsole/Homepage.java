@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 
 import com.fasterxml.jackson.databind.ObjectMapper ;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -116,8 +119,25 @@ public class Homepage {
     @FXML
     void selectDbAndProceed(ActionEvent event) {
 
+        if(dbnameDisplay.getText().contains("Database")){
+            Scene scene = dbnameDisplay.getScene();
+            Window window = scene.getWindow();
+            Stage stage = (Stage) window;
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(HelloApplication.class.getResource("buckethome.fxml"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            Scene scene1 = new Scene(root);
+            stage.setScene(scene1);
+            stage.show();
+        }
+
         String selectedDB = dbList.getSelectionModel().getSelectedItem();
-        dbnameDisplay.setText(selectedDB);
+        inf.setSelectedDB(selectedDB);
+        ProceedBtn.setText("Proceed with : " + selectedDB);
+        dbnameDisplay.setText("Database Selected: "+selectedDB);
     }
 
 }
