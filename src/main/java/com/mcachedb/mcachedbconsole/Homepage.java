@@ -28,9 +28,6 @@ public class Homepage {
             .version(HttpClient.Version.HTTP_2)
             .build();
 
-
-    int portString = 0;
-
     @FXML
     private ListView<String> dbList;
 
@@ -44,25 +41,16 @@ public class Homepage {
     @FXML
     private TextField newDbName;
 
-    void setPort(){
-        Scene scene = newDbName.getScene();
-        Window window = scene.getWindow();
-        Stage stage = (Stage) window;
-        Info info = (Info) stage.getUserData();
-        portString = info.getPort();
-    }
+    public static Info inf = Info.Info() ;
+
 
     @FXML
     void createDb(ActionEvent event) {
 
-        if(portString != 0){
-            setPort();
-        }
-
         HttpResponse<String> res ;
         HttpRequest r = HttpRequest.newBuilder()
                 .POST(HttpRequest.BodyPublishers.noBody())
-                .uri(URI.create("http://localhost:"+portString+"/db/"+newDbName.getText()))
+                .uri(URI.create("http://localhost:"+inf.getPort()+"/db/"+newDbName.getText()))
                 .build();
 
         try{
@@ -79,7 +67,7 @@ public class Homepage {
             }
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Not able to connect to port " + portString + "\n" + "MCacheDB might be running on a different port number :\\");
+            alert.setContentText("Not able to connect to port " + inf.getPort() + "\n" + "MCacheDB might be running on a different port number :\\");
             alert.show();
         }
     }
@@ -87,14 +75,10 @@ public class Homepage {
     @FXML
     void refreshDbList(ActionEvent event) {
 
-        if(portString != 0){
-            setPort();
-        }
-
         HttpResponse<String> res ;
         HttpRequest r = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("http://localhost:"+portString+"/dbs"))
+                .uri(URI.create("http://localhost:"+inf.getPort()+"/dbs"))
                 .build();
 
         try{
@@ -123,7 +107,7 @@ public class Homepage {
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             System.out.println(e.toString());
-            alert.setContentText("Not able to connect to port " + portString + "\n" + "MCacheDB might be running on a different port number :\\");
+            alert.setContentText("Not able to connect to port " + inf.getPort() + "\n" + "MCacheDB might be running on a different port number :\\");
             alert.show();
         }
 
@@ -131,10 +115,6 @@ public class Homepage {
 
     @FXML
     void selectDbAndProceed(ActionEvent event) {
-
-        if(portString != 0){
-            setPort();
-        }
 
         String selectedDB = dbList.getSelectionModel().getSelectedItem();
         dbnameDisplay.setText(selectedDB);

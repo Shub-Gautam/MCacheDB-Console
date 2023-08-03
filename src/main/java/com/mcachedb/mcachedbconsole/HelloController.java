@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -25,7 +26,8 @@ public class HelloController {
     HttpClient client = HttpClient.newBuilder()
             .version(HttpClient.Version.HTTP_2)
             .build();
-
+    @FXML
+    private Button checkConBtn;
     @FXML
     private Label welcomeText;
     @FXML
@@ -34,7 +36,7 @@ public class HelloController {
     @FXML
     void checkConnection(ActionEvent event) throws IOException, InterruptedException {
 
-        Scene scene = portTextField.getScene();
+        Scene scene = checkConBtn.getScene();
         Window window = scene.getWindow();
         Stage stage = (Stage) window;
 
@@ -55,7 +57,8 @@ public class HelloController {
 
                 Parent root = FXMLLoader.load(HelloApplication.class.getResource("homepage.fxml"));
                 Scene scene1 = new Scene(root);
-                stage.setUserData(new Info(Integer.parseInt(portString)));
+                Info inf = Info.Info();
+                inf.setPort(Integer.parseInt(portString));
                 stage.setScene(scene1);
                 stage.show();
 
