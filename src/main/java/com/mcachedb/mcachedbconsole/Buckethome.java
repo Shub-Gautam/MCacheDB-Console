@@ -10,6 +10,7 @@ import com.mcachedb.mcachedbconsole.System.Info;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -33,6 +34,9 @@ public class Buckethome implements Initializable {
     private Button addBktbh;
 
     @FXML
+    private Button addRecordBtn;
+
+    @FXML
     private Button adminbtnbh;
 
     @FXML
@@ -40,6 +44,12 @@ public class Buckethome implements Initializable {
 
     @FXML
     private Label displaydblblbh;
+
+    @FXML
+    private TextField newRecKey;
+
+    @FXML
+    private TextField newRecVal;
 
     @FXML
     private TableView<DisplayRecord> keyValbh;
@@ -62,6 +72,45 @@ public class Buckethome implements Initializable {
     List<String> bktList = null;
 
     public static Info inf = Info.Info() ;
+
+
+    @FXML
+    void addRecordIntoBucket(ActionEvent event) {
+        String Key = newRecKey.getText();
+        String Value = newRecVal.getText();
+        HttpResponse<String> res ;
+
+        Map<Object, Object> data = new HashMap<>();
+        data.put("key", Key);
+        data.put("value", Value);
+        String bktName = bucketListbh.getSelectionModel().getSelectedItem();
+        Gson gson = new Gson();
+        HttpRequest r = HttpRequest.newBuilder()
+                .headers("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(data)))
+                .uri(URI.create("http://localhost:"+inf.getPort()+"/db/"+inf.getSelectedDB()+"/bask/"+bktName+"/add"))
+                .build();
+
+        try{
+            res = client.send(r, HttpResponse.BodyHandlers.ofString());
+            if(res.statusCode()==200){
+                System.out.println(res.toString());
+                newRecKey.setText("");
+                newRecVal.setText("");
+                refreshKV();
+            }else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Something went wrong, MCacheDB is not responding");
+                alert.show();
+
+            }
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            System.out.println(e.toString());
+            alert.setContentText("Not able to connect to port " + inf.getPort() + "\n" + "MCacheDB might be running on a different port number :\\");
+            alert.show();
+        }
+    }
 
     @FXML
     void addBucket(ActionEvent event) {
@@ -93,31 +142,21 @@ public class Buckethome implements Initializable {
 
     @FXML
     void displayKeyValueForBucket(MouseEvent event) {
-        System.out.println(event.getX());
         String bktName = bucketListbh.getSelectionModel().getSelectedItem();
         HttpResponse<String> res ;
         Gson gson = new Gson();
 
-//        Map<Object, Object> data = new HashMap<>();
-//        data.put("fistname", "admin");
-//        data.put("lastname", "admin");
 
         HttpRequest r = HttpRequest.newBuilder()
-                .GET()//http://localhost:8886/db/gautam/bask/newbask/all
+                .GET()
                 .uri(URI.create("http://localhost:"+inf.getPort()+"/db/"+inf.getSelectedDB()+"/bask/"+bucketListbh.getSelectionModel().getSelectedItem()+"/all"))
                 .build();
-
-//        System.out.println(newbktnamebh.getText());
 
         try{
             res = client.send(r, HttpResponse.BodyHandlers.ofString());
             if(res.statusCode()==200){
                 System.out.println("Executedd");
                 GetAllKeyVal allKeyVal = gson.fromJson(res.body(), GetAllKeyVal.class);
-//                System.out.println(allKeyVal);
-//                System.out.println(allKeyVal.getKeyValList().get(0).getKeyValuesMap().getKey());
-//                System.out.println(allKeyVal.getKeyValList().get(0).getKeyValuesMap().getValue());
-
                 List<DisplayRecord> displayRecords = new ArrayList<>();
                 for (KeyVal keyValList :
                         allKeyVal.getKeyValList()) {
@@ -125,8 +164,6 @@ public class Buckethome implements Initializable {
                     DisplayRecord tep  = new DisplayRecord(keyValList.getRowId(),keyValList.getKeyValuesMap().getKey(),keyValList.getKeyValuesMap().getValue(),keyValList.getCreatedAt());
                     displayRecords.add(tep);
                 }
-
-//                System.out.println(displayRecords.get(0).toString());
                 ObservableList<DisplayRecord> observableList = FXCollections.observableArrayList(displayRecords);
                 keyValbh.setItems(observableList);
             }else {
@@ -147,6 +184,12 @@ public class Buckethome implements Initializable {
     @FXML
     void openAdminCenter(ActionEvent event) {
 
+    }
+
+
+    @FXML
+    void refreshKeyVal(ActionEvent event) {
+        refreshKV();
     }
 
     @FXML
@@ -200,5 +243,47 @@ public class Buckethome implements Initializable {
             alert.show();
         }
         return list ;
+    }
+
+
+
+    void refreshKV(){
+        String bktName = bucketListbh.getSelectionModel().getSelectedItem();
+        HttpResponse<String> res ;
+        Gson gson = new Gson();
+
+
+        HttpRequest r = HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create("http://localhost:"+inf.getPort()+"/db/"+inf.getSelectedDB()+"/bask/"+bucketListbh.getSelectionModel().getSelectedItem()+"/all"))
+                .build();
+
+        try{
+            res = client.send(r, HttpResponse.BodyHandlers.ofString());
+            if(res.statusCode()==200){
+                System.out.println("Executedd");
+                GetAllKeyVal allKeyVal = gson.fromJson(res.body(), GetAllKeyVal.class);
+                List<DisplayRecord> displayRecords = new ArrayList<>();
+                for (KeyVal keyValList :
+                        allKeyVal.getKeyValList()) {
+
+                    DisplayRecord tep  = new DisplayRecord(keyValList.getRowId(),keyValList.getKeyValuesMap().getKey(),keyValList.getKeyValuesMap().getValue(),keyValList.getCreatedAt());
+                    displayRecords.add(tep);
+                }
+                ObservableList<DisplayRecord> observableList = FXCollections.observableArrayList(displayRecords);
+                keyValbh.setItems(observableList);
+            }else {
+                System.out.println(res.toString());
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Something went wrong, MCacheDB is not responding");
+                alert.show();
+
+            }
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            System.out.println(e.toString());
+            alert.setContentText("Not able to connect to port " + inf.getPort() + "\n" + "MCacheDB might be running on a different port number :\\");
+            alert.show();
+        }
     }
 }

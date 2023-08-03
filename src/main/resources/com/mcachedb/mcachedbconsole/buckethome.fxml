@@ -32,5 +32,9 @@
       <Button fx:id="adminbtnbh" layoutX="496.0" layoutY="15.0" mnemonicParsing="false" onAction="#openAdminCenter" text="Admin Center" />
       <TextField fx:id="newbktnamebh" layoutX="14.0" layoutY="325.0" prefHeight="26.0" prefWidth="170.0" />
       <Label layoutX="14.0" layoutY="298.0" prefHeight="18.0" prefWidth="170.0" text="Add a new Bucket" />
+      <Button fx:id="addRecordBtn" layoutX="482.0" layoutY="364.0" mnemonicParsing="false" onAction="#addRecordIntoBucket" prefHeight="26.0" prefWidth="103.0" text="Add Record" />
+      <TextField fx:id="newRecVal" layoutX="323.0" layoutY="365.0" />
+      <TextField fx:id="newRecKey" layoutX="208.0" layoutY="364.0" prefHeight="26.0" prefWidth="103.0" />
+      <Button layoutX="529.0" layoutY="75.0" mnemonicParsing="false" onAction="#refreshKeyVal" text="Refresh" />
    </children>
 </AnchorPane>
