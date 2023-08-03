@@ -15,7 +15,11 @@ module com.mcachedb.mcachedbconsole {
     requires eu.hansolo.toolbox;
     requires java.net.http;
     requires com.fasterxml.jackson.databind;
+    requires com.google.gson;
 
     opens com.mcachedb.mcachedbconsole to javafx.fxml;
+    opens com.mcachedb.mcachedbconsole.Request to com.google.gson;
+//    opens com.mcachedb.mcachedbconsole.Request to javafx.base;
     exports com.mcachedb.mcachedbconsole;
+    exports com.mcachedb.mcachedbconsole.Request;
 }

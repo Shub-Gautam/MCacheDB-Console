@@ -4,7 +4,7 @@ public class Info {
 
     private static Info data = new Info(8080);
     int port ;
-    int selectedDB ;
+    String selectedDB ;
 
     public Info(int port) {
         this.port = port;
@@ -27,11 +27,11 @@ public class Info {
         this.data.port = port;
     }
 
-    public int getSelectedDB() {
+    public String getSelectedDB() {
         return data.selectedDB;
     }
 
-    public void setSelectedDB(int selectedDB) {
+    public void setSelectedDB(String selectedDB) {
         this.data.selectedDB = selectedDB;
     }
 }
