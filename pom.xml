@@ -82,6 +82,44 @@
             <scope>test</scope>
         </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>eu.hansolo.fx</groupId>-->
+<!--            <artifactId>countries</artifactId>-->
+<!--            <version>17.0.1</version>-->
+<!--        </dependency>-->
+
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/eu.hansolo.fx/heatmap &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>eu.hansolo.fx</groupId>-->
+<!--            <artifactId>heatmap</artifactId>-->
+<!--            <version>17.0.21</version>-->
+<!--        </dependency>-->
+
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/eu.hansolo/toolbox &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>eu.hansolo</groupId>-->
+<!--            <artifactId>toolbox</artifactId>-->
+<!--            <version>17.0.21</version>-->
+<!--        </dependency>-->
+
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/eu.hansolo/toolboxfx &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>eu.hansolo</groupId>-->
+<!--            <artifactId>toolboxfx</artifactId>-->
+<!--            <version>17.0.21</version>-->
+<!--        </dependency>-->
+
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/eu.hansolo/jdktools &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>eu.hansolo</groupId>-->
+<!--            <artifactId>jdktools</artifactId>-->
+<!--            <version>17.0.21</version>-->
+<!--        </dependency>-->
+
+
+
+
+
         <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
         <dependency>
             <groupId>com.google.code.gson</groupId>

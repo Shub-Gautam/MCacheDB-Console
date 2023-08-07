@@ -12,11 +12,17 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
 import java.net.http.HttpClient;
@@ -183,7 +189,19 @@ public class Buckethome implements Initializable {
 
     @FXML
     void openAdminCenter(ActionEvent event) {
+        Scene scene = adminbtnbh.getScene();
+        Window window = scene.getWindow();
+        Stage stage = (Stage) window;
 
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(HelloApplication.class.getResource("admincenter.fxml"));
+            Scene scene1 = new Scene(root);
+            stage.setScene(scene1);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

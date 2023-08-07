@@ -48,6 +48,36 @@ public class Homepage {
 
 
     @FXML
+    void restoreBackup(ActionEvent event) {
+        HttpResponse<String> res ;
+        HttpRequest r = HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create("http://localhost:"+inf.getPort()+"/restore/db"))
+                .build();
+
+        try{
+            res = client.send(r, HttpResponse.BodyHandlers.ofString());
+            if(res.statusCode()==200){
+                refreshDbList(event);
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setContentText("Database Restored Successfully");
+                alert.show();
+            }else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Something went wrong, MCacheDB is not responding");
+                alert.show();
+
+            }
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            System.out.println(e.toString());
+            alert.setContentText("Not able to connect to port " + inf.getPort() + "\n" + "MCacheDB might be running on a different port number :\\");
+            alert.show();
+        }
+    }
+
+
+    @FXML
     void createDb(ActionEvent event) {
 
         HttpResponse<String> res ;

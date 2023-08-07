@@ -17,5 +17,6 @@
       <Button fx:id="ProceedBtn" layoutX="368.0" layoutY="352.0" mnemonicParsing="false" onAction="#selectDbAndProceed" prefHeight="26.0" prefWidth="200.0" text="Proceed" />
       <TextField fx:id="newDbName" layoutX="155.0" layoutY="18.0" prefHeight="26.0" prefWidth="183.0" />
       <Label fx:id="dbnameDisplay" layoutX="369.0" layoutY="68.0" prefHeight="18.0" prefWidth="200.0" textAlignment="RIGHT" />
+      <Button layoutX="368.0" layoutY="310.0" mnemonicParsing="false" onAction="#restoreBackup" prefHeight="26.0" prefWidth="200.0" text="Restore last backup" />
    </children>
 </AnchorPane>
