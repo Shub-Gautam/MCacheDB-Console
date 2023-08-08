@@ -52,7 +52,7 @@ public class Homepage {
         HttpResponse<String> res ;
         HttpRequest r = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("http://localhost:"+inf.getPort()+"/restore/db"))
+                .uri(URI.create("http://"+inf.getHostAddress()+":"+inf.getPort()+"/restore/db"))
                 .build();
 
         try{
@@ -66,7 +66,6 @@ public class Homepage {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Something went wrong, MCacheDB is not responding");
                 alert.show();
-
             }
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -83,12 +82,14 @@ public class Homepage {
         HttpResponse<String> res ;
         HttpRequest r = HttpRequest.newBuilder()
                 .POST(HttpRequest.BodyPublishers.noBody())
-                .uri(URI.create("http://localhost:"+inf.getPort()+"/db/"+newDbName.getText()))
+                .uri(URI.create("http://"+inf.getHostAddress()+":"+inf.getPort()+"/db/"+newDbName.getText()))
                 .build();
 
         try{
             res = client.send(r, HttpResponse.BodyHandlers.ofString());
             if(res.statusCode()==200){
+                newDbName.setText("");
+                refreshDbList(event);
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setContentText("New Database Created !");
                 alert.show();
@@ -106,12 +107,30 @@ public class Homepage {
     }
 
     @FXML
+    void goBackToHome(ActionEvent event) {
+        Scene scene = dbnameDisplay.getScene();
+        Window window = scene.getWindow();
+        Stage stage = (Stage) window;
+        Parent root = null;
+
+        try {
+            root = FXMLLoader.load(HelloApplication.class.getResource("hello-view.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        Scene scene1 = new Scene(root);
+        stage.setScene(scene1);
+        stage.show();
+    }
+
+    @FXML
     void refreshDbList(ActionEvent event) {
 
         HttpResponse<String> res ;
         HttpRequest r = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("http://localhost:"+inf.getPort()+"/dbs"))
+                .uri(URI.create("http://"+inf.getHostAddress()+":"+inf.getPort()+"/dbs"))
                 .build();
 
         try{
@@ -123,11 +142,8 @@ public class Homepage {
                 a = a.replace("[","");
                 a = a.replace("]","");
                 String[] arr = a.split(",");
-//                ArrayList<String> myList = new ArrayList<String>(Arrays.asList(arr));
-//                GetDBsList dBsList = mapper.readValue(res.body(), GetDBsList.class);
                 ObservableList<String> defarr = FXCollections.observableList(new ArrayList<>());
                 dbList.setItems(defarr);
-//                ObservableList<String> oList = FXCollections.observableArrayList(a);
                 for (int i = 0; i < arr.length; i++) {
                     dbList.getItems().add(arr[i].replace("\"",""));
                 }

@@ -6,6 +6,18 @@ public class Info {
     int port ;
     String selectedDB ;
 
+
+    String hostAddress ;
+
+    public String getHostAddress() {
+        return data.hostAddress;
+    }
+
+    public void setHostAddress(String hostAddress) {
+        data.hostAddress = hostAddress;
+    }
+
+
     public Info(int port) {
         this.port = port;
     }

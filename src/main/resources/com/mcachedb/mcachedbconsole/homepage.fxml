@@ -9,14 +9,15 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mcachedb.mcachedbconsole.Homepage">
    <children>
-      <Label layoutX="29.0" layoutY="22.0" text="Enter database name " />
+      <Label layoutX="99.0" layoutY="17.0" prefHeight="26.0" prefWidth="115.0" text="Enter database name " />
       <Button layoutX="359.0" layoutY="17.0" mnemonicParsing="false" onAction="#createDb" prefHeight="26.0" prefWidth="210.0" text="Create" />
       <ListView fx:id="dbList" layoutX="29.0" layoutY="116.0" prefHeight="261.0" prefWidth="200.0" />
       <Line endX="498.99993896484375" endY="-1.1444091796875E-5" layoutX="101.0" layoutY="59.0" startX="-100.0" />
       <Button layoutX="29.0" layoutY="85.0" mnemonicParsing="false" onAction="#refreshDbList" prefHeight="26.0" prefWidth="200.0" text="Refresh Database List" />
       <Button fx:id="ProceedBtn" layoutX="368.0" layoutY="352.0" mnemonicParsing="false" onAction="#selectDbAndProceed" prefHeight="26.0" prefWidth="200.0" text="Proceed" />
-      <TextField fx:id="newDbName" layoutX="155.0" layoutY="18.0" prefHeight="26.0" prefWidth="183.0" />
+      <TextField fx:id="newDbName" layoutX="223.0" layoutY="18.0" prefHeight="26.0" prefWidth="115.0" />
       <Label fx:id="dbnameDisplay" layoutX="369.0" layoutY="68.0" prefHeight="18.0" prefWidth="200.0" textAlignment="RIGHT" />
       <Button layoutX="368.0" layoutY="310.0" mnemonicParsing="false" onAction="#restoreBackup" prefHeight="26.0" prefWidth="200.0" text="Restore last backup" />
+      <Button layoutX="18.0" layoutY="19.0" mnemonicParsing="false" onAction="#goBackToHome" prefHeight="26.0" prefWidth="63.0" text="&lt; Back" />
    </children>
 </AnchorPane>

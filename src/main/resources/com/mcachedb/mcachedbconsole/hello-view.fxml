@@ -10,19 +10,19 @@
 
 <AnchorPane maxHeight="700.0" maxWidth="1000.0" minHeight="300.0" minWidth="594.0" prefHeight="369.0" prefWidth="596.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mcachedb.mcachedbconsole.HelloController">
    <children>
-      <Button fx:id="checkConBtn" layoutX="237.0" layoutY="105.0" mnemonicParsing="false" onAction="#checkConnection" prefHeight="26.0" prefWidth="125.0" text="Check Connection" />
-      <Label layoutX="62.0" layoutY="54.0" text="Enter MCacheDB Port number:" />
-      <TextField fx:id="portTextField" layoutX="253.0" layoutY="50.0" prefHeight="26.0" prefWidth="255.0" text="8886" />
-      <Label layoutX="34.0" layoutY="264.0" prefHeight="18.0" prefWidth="406.0" text="Thank you for testing MCacheDB. Check out latest updates and binaries on  " />
-      <Hyperlink layoutX="34.0" layoutY="282.0" text="https://github.com/Shub-Gautam/MCacheDB/" />
-      <Label layoutX="34.0" layoutY="306.0" text="MIT License © Shubham Gautam  2023" />
-      <Label layoutX="34.0" layoutY="324.0" prefHeight="18.0" prefWidth="139.0" text="MCacheDB version0.07.0" />
-      <Label layoutX="34.0" layoutY="153.0" prefHeight="18.0" prefWidth="133.0" text="Upcoming Features:" />
-      <Label layoutX="34.0" layoutY="176.0" prefHeight="18.0" prefWidth="126.0" text="* Automatic Backup" />
-      <Label layoutX="34.0" layoutY="194.0" text="* Filtered Results" />
-      <Line endX="28.199981689453125" layoutX="123.0" layoutY="146.0" startX="-100.0" />
-      <Line endX="30.600006103515625" layoutX="123.0" layoutY="223.0" startX="-100.0" />
-      <Label layoutX="354.0" layoutY="324.0" text="Use consoles only with same versions" />
-      <Circle fill="DODGERBLUE" layoutX="339.0" layoutY="333.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+      <Button fx:id="checkConBtn" layoutX="442.0" layoutY="12.0" mnemonicParsing="false" onAction="#checkConnection" prefHeight="54.0" prefWidth="139.0" text="Establish Connection" />
+      <Label layoutX="269.0" layoutY="14.0" text="Enter MCacheDB Server Details:" />
+      <TextField fx:id="portTextField" layoutX="366.0" layoutY="39.0" prefHeight="26.0" prefWidth="68.0" text="8886" />
+      <Label layoutX="23.0" layoutY="243.0" prefHeight="18.0" prefWidth="406.0" text="Thank you for testing MCacheDB. Check out latest updates and binaries on  " />
+      <Hyperlink layoutX="19.0" layoutY="261.0" prefHeight="24.0" prefWidth="258.0" text="https://github.com/Shub-Gautam/MCacheDB/" />
+      <Label layoutX="23.0" layoutY="285.0" text="MIT License © Shubham Gautam  2023" />
+      <Label layoutX="23.0" layoutY="303.0" prefHeight="18.0" prefWidth="139.0" text="MCacheDB version0.10.0" />
+      <Label layoutX="375.0" layoutY="332.0" text="Use consoles only with same versions" />
+      <Circle fill="DODGERBLUE" layoutX="360.0" layoutY="341.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+      <Button layoutX="22.0" layoutY="328.0" mnemonicParsing="false" onAction="#serverStart" prefHeight="26.0" prefWidth="167.0" text="Start local McacheDB Server" />
+      <Label layoutX="25.0" layoutY="218.0" prefHeight="18.0" prefWidth="162.0" text="Your Internal IP address: " />
+      <Label fx:id="ipaddress4" layoutX="167.0" layoutY="218.0" prefHeight="18.0" prefWidth="126.0" />
+      <TextField fx:id="hostStringTF" layoutX="269.0" layoutY="39.0" prefHeight="26.0" prefWidth="82.0" text="127.0.0.1" />
+      <Line endX="490.0" layoutX="105.0" layoutY="77.0" startX="-105.99999237060547" />
    </children>
 </AnchorPane>

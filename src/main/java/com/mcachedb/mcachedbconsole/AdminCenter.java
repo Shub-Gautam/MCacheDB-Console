@@ -35,7 +35,7 @@ public class AdminCenter {
         HttpResponse<String> res ;
         HttpRequest r = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("http://localhost:"+inf.getPort()+"/backup/db"))
+                .uri(URI.create("http://"+inf.getHostAddress()+":"+inf.getPort()+"/backup/db"))
                 .build();
 
         try{
@@ -79,7 +79,7 @@ public class AdminCenter {
         HttpResponse<String> res ;
         HttpRequest r = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("http://localhost:"+inf.getPort()+"/restore/db"))
+                .uri(URI.create("http://"+inf.getHostAddress()+":"+inf.getPort()+"/restore/db"))
                 .build();
 
         try{

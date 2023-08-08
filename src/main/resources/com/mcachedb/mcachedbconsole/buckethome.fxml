@@ -12,12 +12,12 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mcachedb.mcachedbconsole.Buckethome">
    <children>
-      <Label layoutX="14.0" layoutY="14.0" text="DATABASE :">
+      <Label layoutX="85.0" layoutY="14.0" prefHeight="26.0" prefWidth="86.0" text="DATABASE :">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="displaydblblbh" layoutX="127.0" layoutY="19.0" prefHeight="18.0" prefWidth="149.0" />
+      <Label fx:id="displaydblblbh" layoutX="184.0" layoutY="14.0" prefHeight="26.0" prefWidth="150.0" />
       <ListView fx:id="bucketListbh" layoutX="14.0" layoutY="114.0" onMouseClicked="#displayKeyValueForBucket" prefHeight="177.0" prefWidth="170.0" />
       <Line endX="492.0" endY="-1.1444091796875E-5" layoutX="108.0" layoutY="59.0" startX="-108.0" startY="-1.1444091796875E-5" />
       <Label layoutX="14.0" layoutY="79.0" prefHeight="18.0" prefWidth="113.0" text="Available Buckets" />
@@ -36,5 +36,6 @@
       <TextField fx:id="newRecVal" layoutX="323.0" layoutY="365.0" />
       <TextField fx:id="newRecKey" layoutX="208.0" layoutY="364.0" prefHeight="26.0" prefWidth="103.0" />
       <Button layoutX="529.0" layoutY="75.0" mnemonicParsing="false" onAction="#refreshKeyVal" text="Refresh" />
+      <Button layoutX="19.0" layoutY="15.0" mnemonicParsing="false" onAction="#goBacktoHome" text="&lt; Back" />
    </children>
 </AnchorPane>

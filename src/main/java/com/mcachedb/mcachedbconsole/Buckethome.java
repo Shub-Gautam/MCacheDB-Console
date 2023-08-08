@@ -79,6 +79,24 @@ public class Buckethome implements Initializable {
 
     public static Info inf = Info.Info() ;
 
+    @FXML
+    void goBacktoHome(ActionEvent event) {
+        Scene scene = refreshBtnbh.getScene();
+        Window window = scene.getWindow();
+        Stage stage = (Stage) window;
+        Parent root = null;
+
+        try {
+            root = FXMLLoader.load(HelloApplication.class.getResource("homepage.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        Scene scene1 = new Scene(root);
+        stage.setScene(scene1);
+        stage.show();
+    }
+
 
     @FXML
     void addRecordIntoBucket(ActionEvent event) {
@@ -94,7 +112,7 @@ public class Buckethome implements Initializable {
         HttpRequest r = HttpRequest.newBuilder()
                 .headers("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(data)))
-                .uri(URI.create("http://localhost:"+inf.getPort()+"/db/"+inf.getSelectedDB()+"/bask/"+bktName+"/add"))
+                .uri(URI.create("http://"+inf.getHostAddress()+":"+inf.getPort()+"/db/"+inf.getSelectedDB()+"/bask/"+bktName+"/add"))
                 .build();
 
         try{
@@ -123,7 +141,7 @@ public class Buckethome implements Initializable {
         HttpResponse<String> res ;
         HttpRequest r = HttpRequest.newBuilder()
                 .POST(HttpRequest.BodyPublishers.noBody())
-                .uri(URI.create("http://localhost:"+inf.getPort()+"/bask/create/"+inf.getSelectedDB()+"/"+newbktnamebh.getText()))
+                .uri(URI.create("http://"+inf.getHostAddress()+":"+inf.getPort()+"/bask/create/"+inf.getSelectedDB()+"/"+newbktnamebh.getText()))
                 .build();
 
         try{
@@ -228,7 +246,7 @@ public class Buckethome implements Initializable {
         HttpResponse<String> res ;
         HttpRequest r = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("http://localhost:"+inf.getPort()+"/bask/"+db))
+                .uri(URI.create("http://"+inf.getHostAddress()+":"+inf.getPort()+"/bask/"+db))
                 .build();
 
         try{
@@ -273,7 +291,7 @@ public class Buckethome implements Initializable {
 
         HttpRequest r = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("http://localhost:"+inf.getPort()+"/db/"+inf.getSelectedDB()+"/bask/"+bucketListbh.getSelectionModel().getSelectedItem()+"/all"))
+                .uri(URI.create("http://"+inf.getHostAddress()+":"+inf.getPort()+"/db/"+inf.getSelectedDB()+"/bask/"+bucketListbh.getSelectionModel().getSelectedItem()+"/all"))
                 .build();
 
         try{
